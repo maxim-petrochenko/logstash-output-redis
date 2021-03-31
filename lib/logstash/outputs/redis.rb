@@ -218,7 +218,7 @@ class LogStash::Outputs::Redis < LogStash::Outputs::Base
       @redis ||= connect
       if @data_type == 'list'
         congestion_check(key)
-        @redis.rpush(key, payload)
+        @redis.set(key, payload)
       else
         @redis.publish(key, payload)
       end
